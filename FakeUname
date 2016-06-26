@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#Author: @TheTunnelix jmutkawoa@hackers.mu
+#Script to fake the Kernel version before rebooting the machine.
+#It is assume that the packages kernel kernel-headers have been updated without rebooting the machine which will allow the script to work.
+
+#Tested on Centos6
+
+#Making use of -r argument of uname
+
+if [ "x$@" == "x-r" ]; 
+then
+        rpm -q kernel-headers | sed -e 's/kernel-headers-//'
+else
+        /bin/uname $@ | cut -d. -f1-5$@
+fi
