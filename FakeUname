@@ -11,6 +11,8 @@
 if [ "x$@" == "x-r" ]; 
 then
         rpm -q kernel-headers | sed -e 's/kernel-headers-//'
+elif [ "x$@" == "x-m" ]; then
+	rpm -q kernel-headers | sed -e 's/kernel-headers-//' | cut -d. -f7
 else
-        /bin/uname $@ | cut -d. -f1-5$@
+        /bin/uname $@
 fi
